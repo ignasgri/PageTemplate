@@ -1,0 +1,1 @@
+c:\Users\ignas\virtualenvs\page_template\Scripts\activate
