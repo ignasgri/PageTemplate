@@ -1,3 +1,8 @@
-body{
-    background-color: red;
-}
+body, html{
+    height:100%;
+    margin:0;
+    font-weight:400;
+    line-height:1.8em;
+    color:#666;
+    overflow-x: hidden;
+  }
