@@ -3,6 +3,6 @@ body, html{
     margin:0;
     font-weight:400;
     line-height:1.8em;
-    color:#666;
+    color: #444!important;
     overflow-x: hidden;
-  }
+}
