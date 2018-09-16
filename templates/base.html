@@ -71,6 +71,8 @@
         <h2>Bootstrap 4.0.0 is now working</h2>
         <h3>JQuery is added and running version 3.3.1</h3>
         <p>this is p text</p>
+        <p>This is image using static files{(%) static "images/image001.png" (%)}<img src="{% static "images/image001.png" %}" alt="My image"/></p>
+        <p><img src="{{ MEDIA_URL }}image001.png"/>Image from media folder added</p>
     </section>
 
     <div class="container">
