@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+            One of three columns
+            </div>
+            <div class="col-sm">
+            One of three columns
+            </div>
+            <div class="col-sm">
+            One of three columns
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            
+                <div class="panel-body">
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            <div class="messages">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+<section>
+    <h1>Page is working and serving CSS and JavaScript</h1>
+    <h2>Bootstrap 4.0.0 is now working</h2>
+    <h3>JQuery is added and running version 3.3.1</h3>
+    <p>this is p text</p>
+    <p>This is image using static files{(%) static "images/image001.png" (%)}<img src="{% static "images/image001.png" %}" alt="My image"/></p>
+    {% comment %} <p><img src="{{ MEDIA_URL }}image001.png"/>Image from media folder added</p> {% endcomment %}
+</section>
+
+{% endblock %}

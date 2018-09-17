@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
+    'django_gravatar',
+    'debug_toolbar',
     'home',
     'accounts',
-    'debug_toolbar',
+    'blog',
+    
 
 
 ]
@@ -122,6 +125,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+DEFAULT_FROM_EMAIL = 'kickeris@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)

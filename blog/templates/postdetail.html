@@ -1,0 +1,39 @@
+
+{% extends "base.html" %}
+{% load gravatar %}
+
+ 
+{% block content %}
+<div class="blog-panel">
+
+        <div class="row">
+            <div class="col-md-2 col-sm-3 text-center">
+                <a class="story-img" href="#">
+                <img src="{% gravatar_url post.author.email %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">                </a>
+                <h6>Author: {{post.author}} <br> {{ post.published_date }}</h6>
+                <img src="http://i65.tinypic.com/2czszr9.jpg" alt="Social_Media_PNG_File" height="18" width="110">
+            </div>
+            
+            <div class="col-md-10 col-sm-9">
+                <h2><i class="post-title">{{ post.title }}</i></h2>
+                <div class="row">
+                    <div class="col-xs-12 col-sl-12 col-md-11 col-lg-9">
+                         {% if post.image %}
+                           <img class="imagesize" src="{{MEDIA_URL}}{{ post.image}}">
+                            {% endif %}
+                          <p>{{ post.content|linebreaks }}</p>
+                          <p><button class="btn btn-default" onclick="location.href='{% url 'post_list'%}'">Back to Blog</button> 
+                            {% if user.id == post.author_id %}
+                          <button class="btn btn-default" onclick="location.href='{% url 'edit' post.id %}'">Edit</button>
+                          {% endif %}
+                          <a href="/"><button class="btn btn-default"><a href="/">back</button></a></p>                          
+                          <p>{{ post.published_date }}</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        
+    </div>
+{% endblock %}
