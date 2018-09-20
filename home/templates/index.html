@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block content %}
 
+
+
 <main>
     <div class="container">
         <div class="row">
@@ -17,26 +19,6 @@
         </div>
     </div>
 </main>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-            
-                <div class="panel-body">
-                    {% if messages %}
-                        <div class="alert alert-success">
-                            <div class="messages">
-                                {% for message in messages %}
-                                    {{ message }}
-                                {% endfor %}
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-            
-        </div>
-    </div>
-</div>
 
 <section>
     <h1>Page is working and serving CSS and JavaScript</h1>

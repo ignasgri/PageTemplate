@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 def logout(request):
     auth.logout(request)
     messages.success(request, 'You have successfully logged out')
-    return redirect(reverse('base'))
+    return redirect(reverse('index'))
 
 @login_required(login_url='/accounts/login')
 def profile(request):

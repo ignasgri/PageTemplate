@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'home',
     'accounts',
     'blog',
+    'shop_cart',
+    'shop_categories',
+    'shop_payments',
+    'shop_products',
+    'search',
     
 
 
@@ -125,6 +130,22 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# from django.contrib.messages import constants as messages
+
+# MESSAGE_TAGS = {
+#     messages.DEBUG: 'alert-info',
+#     messages.INFO: 'alert-info',
+#     messages.SUCCESS: 'alert-success',
+#     messages.WARNING: 'alert-warning',
+#     messages.ERROR: 'alert-danger',
+# }
+# from django.contrib.messages import constants as message_constants
+# MESSAGE_LEVEL = message_constants.DEBUG
+# MESSAGE_LEVEL = 10  # DEBUG
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET_KEY')
 
 DEFAULT_FROM_EMAIL = 'kickeris@gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+
+{% for product in products %}
+        <!-- Modal -->
+<div id="{{product.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content1">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">{{product.name}}</h1>
+      </div>
+      <div class="modal-body">
+<div class="row">
+  <div class="col-sm-6 col-md-6 col-lg-6">
+    <img class="productInfo" src="{{ MEDIA_URL }}{{ product.image }}">
+  </div>
+    <div class="col-sm-6 col-md-6 col-lg-6">
+      <h6>{{ product.description }}</h6>
+      <h2>€{{ product.price }} each</h2>
+    </div>
+</div>
+      </div>
+      <div class="modal-footer">
+        <div class="inlineButtons">
+        <form method="post" action="{% url 'add_plus' product.id %}">
+          <button class="btn btn-default" type="submit">Add to cart</button>
+          {% csrf_token %}
+        </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endfor %}
+
+
+
+<div class="products-container"><!--1-->
+    <div class="col-lg-4 col-md-4 col-sm-2 col-xs-6 productshow">
+        <div class="productwraper">
+
+<br>
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>   
+        </div>
+    </div>
+        </div>
+        
+   
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 productcategories"><!--2-->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchResults">
+                        {% block sidebar %}
+                            <div class="catnames">
+                                <h4>Categories</h4>
+                        {% for category in root_categories %}
+                                    <div class="category-name"><a href="{% url 'category' category.id %}">{{ category.name }}</a></div>
+                        {% endfor %}
+                            </div>
+                                <form class="search-inline" method='GET' action="{% url 'search' %}">
+                                    <input type="text" name="search" placeholder="Search">
+                                    <button id="search" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                </form>
+                        {% endblock sidebar %}
+                    </div>
+                </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row productmenu">
+                <table class="table table-striped">
+                   
+                {% for product in products %}
+                            <tr>
+                                <td><img class="product-image" data-toggle="modal" data-target="#{{product.id}}" src="{{ MEDIA_URL }}{{ product.image }}"></td>
+                                <td>{{ product.name }}<br><h6>{{ product.description }}</h6></td>
+                                <td>€{{ product.price }}</td>
+                                <td>
+                                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                    
+                                        <input class="smallInput"name='quantity' value="1" type="number" min="1" max="99">
+                                        <button i class="fa fa-shopping-basket" aria-hidden="true" type="submit"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                {% endfor %}
+                        </tbody>
+                </table>   
+                <hr>
+            </div>
+<!--pagination-->
+                <div class="pagination">
+                    <span class="step-links">
+                        {% if products.has_previous %}
+                            <a href="?page={{ products.previous_page_number }}" class="post-meta"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i></i></a>
+                        {% endif %}
+                    <span class="current">Page {{ products.number }} of {{ products.paginator.num_pages }}</span>
+                        {% if products.has_next %}
+                            <a href="?page={{ products.next_page_number }}" class="post-meta"><i class="fa fa-angle-right fa-lg" aria-hidden="true"></i></a>
+                        {% endif %}
+                    </span>
+                </div>     
+        </div><!--2-->
+</div><!--1-->
+
+{% endblock %}
