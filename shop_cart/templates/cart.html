@@ -29,16 +29,18 @@
       </div>
     </div>
   </div>
+  {% for item in items %}
+
+          {% csrf_token %}
+          
+
 
   <div class="cart__line last table__row">
     <div class="row">
       <div class="col-7 cart__line__product">
-        <a class="link--clean" href="/en/products/white-smith-260/">
-          <img class="lazyload lazypreload" data-src="https://saleor-demo.s3.amazonaws.com/__sized__/products/saleor/static/placeholders/t-shirts/5-crop-c0-5__0-5-60x60-70.jpg"
-               data-srcset="https://saleor-demo.s3.amazonaws.com/__sized__/products/saleor/static/placeholders/t-shirts/5-crop-c0-5__0-5-60x60-70.jpg 1x, https://saleor-demo.s3.amazonaws.com/__sized__/products/saleor/static/placeholders/t-shirts/5-crop-c0-5__0-5-120x120-70.jpg 2x"
-               alt="">
-          <p>White-Smith<br><small>S</small></p>
-        </a>
+            <img height="50" width="50" src="{{ MEDIA_URL }}{{ item.product.image }}">
+          <span>{{ product.name }}<br></span>
+        
       </div>
       <div class="col-5">
         <div class="row">
@@ -56,7 +58,7 @@
           </div>
           <div class="cart-item-price col-md-5 col-12" data-product-id="766">
             <p class="text-right">
-              <span class="currency">$</span>70.31
+              <span class="currency">€</span>{{ item.product.price }}
 
             </p>
           </div>
@@ -81,9 +83,8 @@
     <h3>Subtotal</h3>
   </div>
   <div class="col-4">
-    <h3 class="text-right cart-subtotal" data-value="$70.31
-" >
-      <span class="currency">$</span>70.31
+    <h3 class="text-right cart-subtotal"  >
+      <span class="currency">€</span>{{ total }}
     </h3>
   </div>
 </div>
@@ -97,6 +98,7 @@
           <p>Shipping cost for:</p>
         </div>
         <div class="col-12 col-md-8">
+                {% endfor %}
           <select name="country" id="id_country">
 <option value="AF">Afghanistan</option>
 
